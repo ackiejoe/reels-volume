@@ -1,0 +1,141 @@
+/* Facebook & Instagram Reels Volume Control Styles */
+.fb-ig-reels-volume-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 25px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fb-ig-reels-volume-control:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
+}
+
+.volume-icon {
+    font-size: 18px;
+    user-select: none;
+    min-width: 20px;
+    text-align: center;
+    pointer-events: none; /* Not clickable anymore */
+}
+
+.volume-slider {
+    width: 80px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #1877f2; /* Facebook blue - will work for both platforms */
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(24, 119, 242, 0.4);
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    background: #166fe5;
+    transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #1877f2;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(24, 119, 242, 0.4);
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+    background: #166fe5;
+    transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-track {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    border: none;
+}
+
+.volume-value {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 35px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .fb-ig-reels-volume-control {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
+        gap: 8px;
+    }
+    
+    .volume-slider {
+        width: 60px;
+    }
+    
+    .volume-icon {
+        font-size: 16px;
+    }
+    
+    .volume-value {
+        font-size: 11px;
+        min-width: 30px;
+    }
+}
+
+/* Animation for when volume control appears */
+.fb-ig-reels-volume-control {
+    animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Ensure it doesn't interfere with Facebook's or Instagram's UI */
+.fb-ig-reels-volume-control * {
+    box-sizing: border-box;
+}
+
+/* Hide on very small screens to avoid UI conflicts */
+@media (max-width: 480px) {
+    .fb-ig-reels-volume-control {
+        display: none;
+    }
+}

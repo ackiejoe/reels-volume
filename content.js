@@ -18,12 +18,12 @@
         volumeSlider.type = 'range';
         volumeSlider.min = '0';
         volumeSlider.max = '100';
-        volumeSlider.value = '100';
+        volumeSlider.value = '20';
         volumeSlider.className = 'volume-slider';
         
         const volumeValue = document.createElement('span');
         volumeValue.className = 'volume-value';
-        volumeValue.textContent = '100%';
+        volumeValue.textContent = '20%';
         
         volumeContainer.appendChild(volumeIcon);
         volumeContainer.appendChild(volumeSlider);
@@ -36,7 +36,6 @@
             
             videos.forEach(video => {
                 if (video.offsetWidth > 0 && video.offsetHeight > 0) {
-                    video.muted = false; // Ensure video is unmuted when adjusting volume
                     video.volume = volume;
                 }
             });
@@ -125,7 +124,6 @@
                 
                 if (slider && volumeIcon && volumeValue) {
                     // Apply slider volume to video
-                    video.muted = false; // Unmute video
                     video.volume = slider.value / 100;
                     
                     // Update icon based on volume level
@@ -143,7 +141,6 @@
                 // Handle video events - set volume as early as possible
                 video.addEventListener('loadstart', () => {
                     if (slider && volumeIcon && volumeValue) {
-                        video.muted = false;
                         video.volume = slider.value / 100;
                         const volume = slider.value / 100;
                         volumeIcon.innerHTML = volume === 0 ? '🔇' : volume < 0.5 ? '🔉' : '🔊';
@@ -153,7 +150,6 @@
                 
                 video.addEventListener('canplay', () => {
                     if (slider) {
-                        video.muted = false;
                         video.volume = slider.value / 100;
                     }
                 });
@@ -175,7 +171,6 @@
                 // Set volume on play event
                 video.addEventListener('play', () => {
                     if (slider) {
-                        video.muted = false;
                         video.volume = slider.value / 100;
                     }
                 });
@@ -267,7 +262,6 @@
                             
                             if (slider && volumeIcon && volumeValue) {
                                 newVideos.forEach(video => {
-                                    video.muted = false;
                                     video.volume = slider.value / 100;
                                     const volume = slider.value / 100;
                                     volumeIcon.innerHTML = volume === 0 ? '🔇' : volume < 0.5 ? '🔉' : '🔊';
